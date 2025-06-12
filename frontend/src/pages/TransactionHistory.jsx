@@ -10,7 +10,7 @@ const TransactionHistory = () => {
         try {
             setLoading(true);
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:3000/api/v1/transactions', {
+            const response = await axios.get('https://flowvault.onrender.com/api/v1/transactions', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -33,7 +33,7 @@ const TransactionHistory = () => {
         try {
             setLoading(true);
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://localhost:3000/api/v1/transactions/search?query=${query}`, {
+            const response = await axios.get(`https://flowvault.onrender.com/api/v1/transactions/search?query=${query}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
