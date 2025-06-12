@@ -13,7 +13,10 @@ try {
     const pipeline = [
         {
             $match: {
-                fromUserId: userId
+                $or: [
+                    {fromUserId: userId},
+                    {toUserId: userId}
+                ]
             }
         },
 
