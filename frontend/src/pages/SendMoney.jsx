@@ -25,7 +25,7 @@ export const SendMoney= ()=> {
         setError("");
         
         try {
-            const response = await axios.post("http://localhost:3000/api/v1/account/transfer", {
+            const response = await axios.post("https://flowvault.onrender.com/api/v1/account/transfer", {
                 to: id,
                 amount: parseInt(amount)
             }, {
