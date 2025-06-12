@@ -25,7 +25,7 @@ export const Dashboard = ()=> {
 
     const fetchUserDetails = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/api/v1/user/me", {
+            const response = await axios.get("https://flowvault.onrender.com/api/v1/user/me", {
                 headers: {  
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -42,7 +42,7 @@ export const Dashboard = ()=> {
         setBalanceError("");
         
         try {
-            const response = await axios.get("http://localhost:3000/api/v1/account/balance", {
+            const response = await axios.get("https://flowvault.onrender.com/api/v1/account/balance", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -62,7 +62,7 @@ export const Dashboard = ()=> {
         setUsersError("");
         
         try {
-            const response = await axios.get("http://localhost:3000/api/v1/user/bulk", {
+            const response = await axios.get("https://flowvault.onrender.com/api/v1/user/bulk", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
