@@ -43,8 +43,8 @@ export const Signup = () => {
     };
 
     return (
-        <div className="bg-slate-300 h-screen flex justify-center">
-            <div className="text-xl font-bold">
+        <div className="bg-slate-300 h-screen flex flex-col justify-center items-center">
+            <div className="text-xl font-bold mb-8">
                 FlowVault
             </div>
             <div className="flex flex-col justify-center">
@@ -72,7 +72,7 @@ export const Signup = () => {
                     />
                     <InputBox 
                         onChange={(e) => setUsername(e.target.value)} 
-                        placeholder="kishan@gmail.com" 
+                        placeholder="john@gmail.com" 
                         label={"Email"} 
                         disabled={isLoading}
                     />
