@@ -70,6 +70,7 @@ router.post("/transfer",authMiddleware,async(req,res)=>{
         };
 
         await Transaction.create(transactionRecords, { session, ordered: true });
+        
         // Commit the transaction
         await session.commitTransaction();
         res.json({ msg: "Transfer successful" });
