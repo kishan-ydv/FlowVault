@@ -34,19 +34,19 @@ router.post("/transfer",authMiddleware,async(req,res)=>{
         const fromUserId =new  mongoose.Types.ObjectId(req.userId);
         const toUserId =  new mongoose.Types.ObjectId(req.body.to);
         const amount = Number  (req.body.amount);
-        if (typeof amount !== "number" || amount <= 0) {
+        if ( isNaN(amount) || amount <= 0) {
             await session.abortTransaction();
             return res.status(400).json({ msg: "Invalid transfer amount" });
         }
 
         const fromAccount = await Account.findOne({ userId: fromUserId }).session(session);
-        if (!fromAccount || fromAccount.balance < amount) {
+        if (!fromAccount || typeof fromAccount.balance !== "number" || isNaN(fromAccount.balance) || fromAccount.balance < amount) {
             await session.abortTransaction();
             return res.status(400).json({ msg: "Insufficient Balance" });
         }
 
         const toAccount = await Account.findOne({ userId: toUserId }).session(session);
-        if (!toAccount) {
+        if (!toAccount || typeof toAccount.balance !== "number" || isNaN(toAccount.balance)) {
             await session.abortTransaction();
             return res.status(400).json({ msg: "Invalid account" });
         }
@@ -59,8 +59,8 @@ router.post("/transfer",authMiddleware,async(req,res)=>{
 
         await Account.updateOne({ userId: fromUserId }, { $inc: { balance: -amount } }).session(session);
         await Account.updateOne({ userId: toUserId }, { $inc: { balance: amount } }).session(session);
-        // Create transaction records
-        const transactionRecords = {
+        // Create transaction record
+        const transactionRecord = {
             fromUserId,
             toUserId,
             amount,
@@ -68,7 +68,7 @@ router.post("/transfer",authMiddleware,async(req,res)=>{
             receiverBalanceAfter: toAccount.balance + amount
         };
 
-        await Transaction.create(transactionRecords, { session, ordered: true });
+        await Transaction.create([transactionRecord], { session });
         
         // Commit the transaction
         await session.commitTransaction();
