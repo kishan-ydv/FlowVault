@@ -81,20 +81,18 @@ const transactionSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
-    type:{
-        type:String,
-        enum:['credit','debit'],
-        required:true
-    },
     timestamp:{
         type:Date,
         default:Date.now
     },
-    balanceAfterTransaction:{
+    senderBalanceAfter: {
+        type:Number,
+        required:true
+    },
+    receiverBalanceAfter:{
         type:Number,
         required:true
     }
-
 });
 
 transactionSchema.index({ fromUserId: 1, toUserId: 1, timestamp: -1 });

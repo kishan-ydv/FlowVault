@@ -60,19 +60,14 @@ router.post("/transfer",authMiddleware,async(req,res)=>{
         await Account.updateOne({ userId: fromUserId }, { $inc: { balance: -amount } }).session(session);
         await Account.updateOne({ userId: toUserId }, { $inc: { balance: amount } }).session(session);
         // Create transaction records
-        const transactionRecords = [{
+        const transactionRecords = {
             fromUserId,
             toUserId,
             amount,
-            type: "debit",
-            balanceAfterTransaction: fromAccount.balance - amount
-        }, {
-            fromUserId: toUserId,
-            toUserId: fromUserId,
-            amount,
-            type: "credit",
-            balanceAfterTransaction: toAccount.balance + amount
-        }];
+            timestamp: new Date(),
+            senderBalanceAfter: fromAccount.balance - amount,
+            receiverBalanceAfter: toAccount.balance - amount
+        };
 
         await Transaction.create(transactionRecords, { session, ordered: true });
         // Commit the transaction

@@ -39,7 +39,13 @@ try {
         {
             $addFields: {
                 isSender: { $eq: ['$fromUserId', userId] },
-                balanceAfterTransaction: '$balanceAfterTransaction'
+                balanceAfterTransaction: {
+                    $cond: {
+                        if: { $eq: ['$fromUserId', userId] },
+                        then: '$senderBalanceAfter',
+                        else: '$receiverBalanceAfter'
+                    }
+                }
             }
         },
         {
