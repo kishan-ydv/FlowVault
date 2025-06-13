@@ -86,11 +86,13 @@ const transactionSchema = new mongoose.Schema({
         default:Date.now
     },
     senderBalanceAfter: {
-        type:Number
+        type:Number,
+        required:true
         
     },
     receiverBalanceAfter:{
-        type:Number
+        type:Number,
+        required:true
     }
 });
 
