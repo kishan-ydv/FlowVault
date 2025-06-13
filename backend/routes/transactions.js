@@ -115,9 +115,12 @@ router.get('/search', authMiddleware, async (req, res) => {
             //Match transactions where user is sender or receiver
             {
             $match: {
-                fromUserId: userId
-            }
-        },
+                    $or: [
+                        {fromUserId: userId},
+                        {toUserId: userId}
+                    ]
+                }
+            },
             // Join with users collection for sender details
             {
                 $lookup: {
@@ -139,9 +142,15 @@ router.get('/search', authMiddleware, async (req, res) => {
             // Add computed fields to determine if user is sender 
             {
                 $addFields: {
-                    isSender: { $eq: ['$fromUserId', userId] },
-                    balanceAfterTransaction: '$balanceAfterTransaction'
+                isSender: { $eq: ['$fromUserId', userId] },
+                balanceAfterTransaction: {
+                    $cond: {
+                        if: { $eq: ['$fromUserId', userId] },
+                        then: '$senderBalanceAfter',
+                        else: '$receiverBalanceAfter'
+                    }
                 }
+            }
             },
             // Filter based on counterparty's firstName or lastName
             {
