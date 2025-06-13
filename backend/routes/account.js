@@ -64,7 +64,6 @@ router.post("/transfer",authMiddleware,async(req,res)=>{
             fromUserId,
             toUserId,
             amount,
-            timestamp: new Date(),
             senderBalanceAfter: fromAccount.balance - amount,
             receiverBalanceAfter: toAccount.balance + amount
         };
