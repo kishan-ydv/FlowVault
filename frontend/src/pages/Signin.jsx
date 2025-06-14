@@ -11,9 +11,17 @@ export const Signin = () => {
       const [username, setUsername] = useState("");
       const [password, setPassword] = useState("");
       const navigate = useNavigate();
-    return <div className="bg-slate-300 h-screen flex justify-center">
-    <div className="flex flex-col justify-center">
-      <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
+      
+    return <div className="bg-gradient-to-br from-slate-100 to-slate-300 h-screen flex flex-col justify-between items-center">
+      <div className="bg-white/90 backdrop-blur-sm shadow h-14 flex justify-between items-center px-4 w-full border-b border-gray-100">
+        <div className="flex items-center">
+            <div className="text-xl font-bold text-gray-800 tracking-tight">
+                FlowVault
+            </div>
+        </div>
+    </div>
+     <div className="flex flex-col mb-14 py-2 justify-center">
+       <div className="rounded-xl bg-white w-96 text-center px-8 py-2 h-max shadow-xl border border-gray-100">
         <Heading label={"Sign in"} />
         <SubHeading label={"Enter your credentials to access your account"} />
         <InputBox onChange={e => {

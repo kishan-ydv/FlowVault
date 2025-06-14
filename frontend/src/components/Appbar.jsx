@@ -22,7 +22,7 @@ export const Appbar = ({user}) => {
     return (
         <div className="shadow h-14 flex justify-between items-center px-4">
             <div className="flex items-center">
-                <div className="text-xl font-bold">
+                <div className="text-xl font-bold text-gray-800 tracking-tight">
                     FlowVault
                 </div>
             </div>

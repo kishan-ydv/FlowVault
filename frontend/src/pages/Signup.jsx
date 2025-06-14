@@ -43,17 +43,17 @@ export const Signup = () => {
     };
 
     return (
-       <div className="bg-gradient-to-br from-slate-100 to-slate-300 h-screen flex flex-col justify-between items-center">
-   <div className="bg-white/90 backdrop-blur-sm shadow-lg h-16 flex justify-between items-center px-6 w-full border-b border-gray-100">
+       <div className="bg-gradient-to-br from-slate-100 to-slate-300 h-max-screen flex flex-col justify-between items-center">
+        <div className="bg-white/90 backdrop-blur-sm shadow h-14 flex justify-between items-center px-4 py-2 w-full border-b border-gray-100">
         <div className="flex items-center">
-            <div className="text-xl font-bold">
+            <div className="text-xl font-bold text-gray-800 tracking-tight">
                 FlowVault
             </div>
         </div>
-    </div>
+        </div>
     
-    <div className="flex flex-col justify-center">
-       <div className="rounded-xl bg-white w-96 text-center p-8 h-max shadow-xl border border-gray-100">
+    <div className="flex flex-col py-4 justify-center">
+       <div className="rounded-xl bg-white w-96 text-center px-8 py-2 h-max shadow-xl border border-gray-100">
             <Heading label={"Sign up"} />
             <SubHeading label={"Enter your information to create an account"} />
             
