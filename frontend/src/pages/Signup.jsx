@@ -43,10 +43,14 @@ export const Signup = () => {
     };
 
     return (
-        <div className="bg-slate-300 h-screen flex flex-col justify-center items-center">
-            <div className="text-xl font-bold mb-8">
-                FlowVault
-            </div>
+        <div className="bg-slate-300 h-screen flex flex-col justify-between items-center">
+             <div className="shadow h-14 flex justify-between items-center px-4">
+                <div className="flex items-center">
+                    <div className="text-xl font-bold">
+                        FlowVault
+                    </div>
+                </div>
+        </div>
             <div className="flex flex-col justify-center">
                 <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
                     <Heading label={"Sign up"} />
